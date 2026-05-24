@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Bell, Search, Moon, Sun, Menu } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useTheme } from "next-themes";
 import { StatusBadge } from "./status-badge";
 
 interface NavbarProps {
@@ -11,7 +12,12 @@ interface NavbarProps {
 }
 
 export function Navbar({ title, subtitle }: NavbarProps) {
-  const [darkMode, setDarkMode] = useState(true);
+  const { theme, setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  const isDark = mounted ? (theme === "dark" || resolvedTheme === "dark") : true;
 
   return (
     <header className="sticky top-0 z-40 backdrop-blur-xl bg-slate-900/60 border-b border-slate-700/50">
@@ -61,10 +67,11 @@ export function Navbar({ title, subtitle }: NavbarProps) {
 
           {/* Theme Toggle */}
           <button
-            onClick={() => setDarkMode(!darkMode)}
+            onClick={() => setTheme(isDark ? "light" : "dark")}
             className="p-2 rounded-xl hover:bg-slate-800 text-slate-400 hover:text-white transition-colors"
+            aria-label="Toggle theme"
           >
-            {darkMode ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+            {isDark ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
           </button>
 
           {/* Profile */}
