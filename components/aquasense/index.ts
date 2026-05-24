@@ -8,3 +8,7 @@ export { Navbar } from "./navbar";
 export { NotificationPanel } from "./notification-panel";
 export { DashboardCard } from "./dashboard-card";
 export { WarningBanner } from "./warning-banner";
+export { default as AnimatedBackground } from "./animated-background";
+export { default as AuthCard } from "./auth-card";
+export { default as DashboardPreview } from "./dashboard-preview";
+export { default as InteractiveTank } from "./interactive-tank";

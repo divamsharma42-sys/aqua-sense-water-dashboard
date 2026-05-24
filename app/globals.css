@@ -140,3 +140,66 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* Animated smart-water background */
+@keyframes floatY {
+  from { transform: translateY(0); }
+  to { transform: translateY(-18px); }
+}
+
+@keyframes slowRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.aqua-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 10% 10%, rgba(3,105,147,0.06), transparent 10%), radial-gradient(ellipse at 90% 90%, rgba(6,182,212,0.04), transparent 10%), linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.9));
+}
+
+.aqua-bg .wave {
+  position: absolute;
+  left: -10%;
+  width: 120%;
+  height: 30%;
+  bottom: -5%;
+  background: radial-gradient(circle at 50% 50%, rgba(6,182,212,0.08), transparent 40%);
+  filter: blur(40px);
+  transform-origin: center;
+  animation: floatY 6s ease-in-out infinite alternate;
+}
+
+.aqua-bg .particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle at 10% 20%, rgba(6,182,212,0.06) 2px, transparent 2px), radial-gradient(circle at 60% 80%, rgba(3,105,147,0.04) 2px, transparent 2px);
+  background-size: 200px 200px, 300px 300px;
+  animation: slowRotate 60s linear infinite;
+}
+
+.aqua-bg .grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(90deg, rgba(6,182,212,0.03) 1px, transparent 1px), linear-gradient(0deg, rgba(6,182,212,0.03) 1px, transparent 1px);
+  background-size: 200px 200px;
+  mix-blend-mode: overlay;
+  opacity: 0.6;
+}
+
+.aqua-bg svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* small sensor dot */
+.sensor-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(6,182,212,1), rgba(3,105,147,0.9));
+  box-shadow: 0 0 12px rgba(6,182,212,0.4);
+}
+
+/* glass card sizing over background */
+.auth-foreground { position: relative; z-index: 10; }
